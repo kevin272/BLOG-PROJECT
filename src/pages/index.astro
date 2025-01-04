@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { format } from 'date-fns';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<Layout title="Hacker Blog">
+  <section class="hero">
+    <h1>> Welcome to my digital garden_</h1>
+    <p class="blink">█</p>
+  </section>
+
+  <section class="recent-posts">
+    <h2>> recent_posts</h2>
+    <ul>
+      {sortedPosts.map(post => (
+        <li>
+          <span class="post-date">{format(post.data.pubDate, 'yyyy-MM-dd')}</span>
+          <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    margin: 4rem 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .blink {
+    animation: blink 1s step-end infinite;
+    font-size: 2rem;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .recent-posts {
+    margin-top: 4rem;
+  }
+
+  ul {
+    list-style: none;
+    margin-top: 1rem;
+  }
+
+  li {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .post-date {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+  }
+</style>

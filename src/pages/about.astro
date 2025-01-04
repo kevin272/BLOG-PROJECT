@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About">
+  <div class="profile-container">
+    <div class="profile-wrapper">
+      <img src="/images/Profile.png" alt="Profile photo" class="profile-image" />
+      <div class="glitch-effect"></div>
+    </div>
+  </div>
+
+  <h1> about_me</h1>
+  
+  <section class="about-content">
+    <p>
+      Hello! I'm a developer passionate about technology and writing. This is my digital garden where I share my thoughts, learnings, and experiences.
+    </p>
+
+    <div class="terminal-info">
+      <pre>
+$ whoami
+> developer, writer, tech enthusiast
+
+$ pwd
+> /home/developer/blog
+
+$ ls -l interests/
+> artificial-intelligence
+> web-development
+> cybersecurity
+> open-source
+      </pre>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .profile-container {
+    margin: 2rem 0;
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  .profile-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    filter: grayscale(80%) contrast(120%);
+    border: 2px solid var(--text-color);
+  }
+
+  .glitch-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51, 255, 51, 0.1);
+    mix-blend-mode: screen;
+    animation: glitch 2s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  .about-content {
+    margin-top: 2rem;
+    max-width: 700px;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .terminal-info {
+    background: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-top: 2rem;
+  }
+
+  pre {
+    font-family: 'Fira Code', monospace;
+    line-height: 1.6;
+  }
+</style>
