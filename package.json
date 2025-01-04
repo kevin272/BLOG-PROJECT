@@ -8,11 +8,17 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+      "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "astro": "^4.15.3",
     "@astrojs/markdown-remark": "^4.3.1",
+    "astro": "^4.15.3",
     "date-fns": "^3.3.1"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "homepage": "https://kevin272.github.io/BLOG-PROJECT"
 }
