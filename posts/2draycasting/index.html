@@ -1,16 +1,37 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Kebin's blog"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.18"><title>SandSimulation</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet"><style>:root{--bg-color: #0a0a0a;--text-color: #33ff33;--accent-color: #00ff00;--hover-color: #66ff66;--secondary-color: #666666}*{margin:0;padding:0;box-sizing:border-box}html{font-family:Fira Code,monospace;background:var(--bg-color);color:var(--text-color)}body{min-height:100vh;line-height:1.6}main{max-width:800px;margin:0 auto;padding:2rem}nav{margin-bottom:3rem}.nav-content{display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.5rem;font-weight:600}.nav-links{display:flex;gap:2rem}a{color:var(--text-color);text-decoration:none;transition:color .2s}a:hover{color:var(--hover-color)}h1,h2,h3{line-height:1.2;margin:2rem 0 1rem}.post-date{color:var(--secondary-color);font-size:.9rem}
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Kebin's blog"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.18"><title>2D Raycasting</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet"><style>:root{--bg-color: #0a0a0a;--text-color: #33ff33;--accent-color: #00ff00;--hover-color: #66ff66;--secondary-color: #666666}*{margin:0;padding:0;box-sizing:border-box}html{font-family:Fira Code,monospace;background:var(--bg-color);color:var(--text-color)}body{min-height:100vh;line-height:1.6}main{max-width:800px;margin:0 auto;padding:2rem}nav{margin-bottom:3rem}.nav-content{display:flex;justify-content:space-between;align-items:center}.logo{font-size:1.5rem;font-weight:600}.nav-links{display:flex;gap:2rem}a{color:var(--text-color);text-decoration:none;transition:color .2s}a:hover{color:var(--hover-color)}h1,h2,h3{line-height:1.2;margin:2rem 0 1rem}.post-date{color:var(--secondary-color);font-size:.9rem}
 .post[data-astro-cid-egg7nqdx]{margin:2rem 0}header[data-astro-cid-egg7nqdx]{margin-bottom:2rem}.post-meta[data-astro-cid-egg7nqdx]{color:var(--secondary-color);margin-top:.5rem}.tag[data-astro-cid-egg7nqdx]{margin-left:1rem}.content[data-astro-cid-egg7nqdx]{line-height:1.8}.content[data-astro-cid-egg7nqdx] h2{margin:2rem 0 1rem}.content[data-astro-cid-egg7nqdx] p{margin-bottom:1.5rem}.content[data-astro-cid-egg7nqdx] pre{background:#1a1a1a;padding:1rem;border-radius:4px;overflow-x:auto;margin:1.5rem 0}.content[data-astro-cid-egg7nqdx] code{font-family:Fira Code,monospace}
-</style></head> <body> <main> <nav> <div class="nav-content"> <a href="/BLOG-PROJECT/" class="logo"> ~/blog</a> <div class="nav-links"> <a href="/BLOG-PROJECT/posts">posts</a> <a href="/BLOG-PROJECT/about">about</a> </div> </div> </nav>  <article class="post" data-astro-cid-egg7nqdx> <header data-astro-cid-egg7nqdx> <h1 data-astro-cid-egg7nqdx>SandSimulation</h1> <div class="post-meta" data-astro-cid-egg7nqdx> <time datetime="2025-11-30T00:00:00.000Z" data-astro-cid-egg7nqdx> 2025-11-30 </time> <span class="tag" data-astro-cid-egg7nqdx>#intro</span><span class="tag" data-astro-cid-egg7nqdx>#tech</span> </div> </header> <div class="content" data-astro-cid-egg7nqdx> <h1 id="important-points-during-development">IMPORTANT POINTS DURING DEVELOPMENT</h1>
+</style></head> <body> <main> <nav> <div class="nav-content"> <a href="/BLOG-PROJECT/" class="logo"> ~/blog</a> <div class="nav-links"> <a href="/BLOG-PROJECT/posts">posts</a> <a href="/BLOG-PROJECT/about">about</a> </div> </div> </nav>  <article class="post" data-astro-cid-egg7nqdx> <header data-astro-cid-egg7nqdx> <h1 data-astro-cid-egg7nqdx>2D Raycasting</h1> <div class="post-meta" data-astro-cid-egg7nqdx> <time datetime="2025-01-05T00:00:00.000Z" data-astro-cid-egg7nqdx> 2025-01-05 </time> <span class="tag" data-astro-cid-egg7nqdx>#intro</span><span class="tag" data-astro-cid-egg7nqdx>#tech</span> </div> </header> <div class="content" data-astro-cid-egg7nqdx> <h1 id="important-points-during-development">IMPORTANT POINTS DURING DEVELOPMENT</h1>
 <ul>
 <li>Use of p5.js is necessary (in this case)</li>
-<li>Check Boundary and manage out of bounds error</li>
-<li></li>
 </ul>
-<h1 id="step1-initial"><strong>Step1</strong>: Initial</h1>
+<h1 id="implementation-logic">IMPLEMENTATION LOGIC</h1>
+<p>Firstly, <strong>t</strong> determines how far wall is with intersection and similarly <strong>u</strong> determines for ray.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);</span></span>
+<span class="line"><span>t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denom; //for walls</span></span>
+<span class="line"><span>u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / denom;//for rays</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Here we check if the rays are intersecting to walls or not.</p>
+<ul>
+<li>if <strong>denom =0</strong>, lines are parallel.</li>
+<li>if <strong>0&#x3C;t&#x3C;1</strong>: The intersection is on the wall.</li>
+<li>if <strong>u>0</strong>: The intersection is in front of the ray.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>if (t > 0 &#x26;&#x26; t &#x3C; 1 &#x26;&#x26; u > 0) {</span></span>
+<span class="line"><span>      const pt = createVector();</span></span>
+<span class="line"><span>      pt.x = x1 + t * (x2 - x1);</span></span>
+<span class="line"><span>      pt.y = y1 + t * (y2 - y1);</span></span>
+<span class="line"><span>      return pt;</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Finidng intersection point if done in pt for x and y.</p>
+<p>This process is repeated for every wall and ray to find the closest intersection point, which is then used to draw the ray on the screen</p>
 <h1 id="demo">Demo</h1>
 <p>Here is my demo of the Simulation</p>
-<iframe height="800" style="width: 100%;" scrolling="no" title="FallingSand" src="https://codepen.io/Dvlkvn/embed/yyBPjXM?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen>
-  See the Pen &#x3C;a href="https://codepen.io/Dvlkvn/pen/yyBPjXM">
-  FallingSand&#x3C;/a> by Dvlkvn (&#x3C;a href="https://codepen.io/Dvlkvn">@Dvlkvn&#x3C;/a>)
+<iframe height="300" style="width: 100%;" scrolling="no" title="2D Raycasting" src="https://codepen.io/Dvlkvn/embed/QwLOYxr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen>
+  See the Pen &#x3C;a href="https://codepen.io/Dvlkvn/pen/QwLOYxr">
+  2D Raycasting&#x3C;/a> by Dvlkvn (&#x3C;a href="https://codepen.io/Dvlkvn">@Dvlkvn&#x3C;/a>)
   on &#x3C;a href="https://codepen.io">CodePen&#x3C;/a>.
 </iframe> </div> </article>  </main> </body></html> 
