@@ -37,7 +37,7 @@ This process is repeated for every wall and ray to find the closest intersection
 # Demo
 Here is my demo of the Simulation
 
-<iframe height="300" style="width: 100%;" scrolling="no" title="2D Raycasting" src="https://codepen.io/Dvlkvn/embed/QwLOYxr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+<iframe height="600" style="width: 100%;" scrolling="no" title="2D Raycasting" src="https://codepen.io/Dvlkvn/embed/QwLOYxr?default-tab=html%2Cresult/live" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/Dvlkvn/pen/QwLOYxr">
   2D Raycasting</a> by Dvlkvn (<a href="https://codepen.io/Dvlkvn">@Dvlkvn</a>)
   on <a href="https://codepen.io">CodePen</a>.
